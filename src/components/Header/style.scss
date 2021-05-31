@@ -1,0 +1,27 @@
+@import '../../sass/variant.scss';
+.header{
+    height: 50px;
+    background-color: #fff;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    .header_wrapper{
+        height: 100%;
+        margin: 0 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .nav_brand{
+            color: #f1bf42;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .nav{
+            color: #888;
+            margin-left: 20px;
+        }
+    }
+}
+.header_transparent{
+    background: transparent;
+    border-bottom-color: transparent;
+}
