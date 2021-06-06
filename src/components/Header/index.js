@@ -2,7 +2,7 @@
 
 import React from 'react'
 import {Link} from 'react-router-dom'
-import styles from './style.scss'
+import styles from './style.module.scss'
 
 function Header(props) {
     return (

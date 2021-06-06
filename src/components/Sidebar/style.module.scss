@@ -1,0 +1,55 @@
+
+@import '../../sass/variant.scss';
+@import '../../sass/mixin.scss';
+
+.sidebar{
+    width: 200px;
+    min-width: 200px;
+    margin-left: 10px;
+    .sidebar_card{
+        border-radius: 5px;
+        @include grey-border;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 16px;
+        
+    }
+    .avatar_wrapper{
+        height: 80px;
+        width: auto;
+        &>.avatar{
+            height: 80px;
+            width: auto;
+            border-radius: 50%;
+        }
+    }
+    .nickname{
+        color: $color-main;
+        font-size: 18px;
+        line-height: 1.5;
+        margin-top: 10px;
+    }
+    .introduction{
+        color: #888;
+        text-align: center;
+    }
+    .tags{
+        margin-top: 10px;
+        text-align: center;
+        :global(.ant-tag){
+            margin-bottom: 6px;
+        }
+    }
+    .card_item{
+        padding: 5px 10px;
+        width: 100%;
+    }
+    .card_title{
+        font-size: 20px;
+        border-bottom: 1px solid rgba(100, 100, 100,.1);
+        padding-top: 0;
+    }
+
+}

@@ -1,0 +1,32 @@
+@import '../../sass/mixin.scss';
+.introduce{
+    flex:1;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 6px 6px 0;
+    background-color: #ffffff;
+    border-radius: 5px;
+    @include grey-border;
+    .item{
+        width: 24%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        @include grey-border;
+        .title{
+            margin-top: 10px;
+            margin-bottom: 0;
+            color: #888;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .cover_wrapper{
+            .cover{
+                width: 100%;
+                border-radius: 6px;
+            }
+        }
+    }
+}

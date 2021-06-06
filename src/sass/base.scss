@@ -1,3 +1,5 @@
+@import '~antd/dist/antd.css';
+
 *{
     margin: 0;
     padding: 0;
@@ -5,7 +7,7 @@
 
 html,body{
     height: 100%;
-    min-width: 900px;
+    min-width: 1200px;
     background-color: #f5f5f5;
 }
 #root{
@@ -21,29 +23,17 @@ a{
     text-decoration: none;
 }
 
+li{
+    list-style: none;
+}
 
-
-:global(.fluid-container){
-    display: flex;
-    flex-direction: column;
-    padding: 0 120px;
+blockquote{
+    padding-left: 20px;
+    border-left: 4px solid #999;
 }
 
 
 
 
-:global(.block){
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid rgba(100, 100, 100,.1);
-    :global(.code){
-        display: inline-block;
-        box-sizing: border-box;
-        width: 100%;
-        padding: 10px 10px;
-        background-color: #f5f5f5;
-        margin-bottom: 10px;
-    }
-}
+
+

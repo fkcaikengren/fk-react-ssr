@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const {merge} = require('webpack-merge');
 const ReactLoadableSSRAddon = require('react-loadable-ssr-addon');
+// const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const base = require('./webpack.base');
 
 
@@ -18,7 +19,7 @@ module.exports = merge(base, {
     module: {
         rules: [
             {
-                test: /\.[s]?css$/,
+                test: /\.module\.[s]?css$/,
                 use: [
                     // 'style-loader', //用MiniCssExtractPlugin.loader替换，实现外部引入样式
                     MiniCssExtractPlugin.loader,
@@ -27,7 +28,26 @@ module.exports = merge(base, {
                         //启动css模块化
                         options: {
                             modules: {
-                                localIdentName: '[local]__[hash:base64:5]'
+                                localIdentName: '[local]__[hash:base64:5]',
+                            } 
+                        }
+                    },
+                    {loader:'postcss-loader'},
+                    {loader:'sass-loader'}
+                ]
+            },
+            {
+                test: /\.[s]?css$/,
+                exclude: /module/, //符合test规则同时排除文件名包含'module'的
+                use: [
+                    // 'style-loader', //用MiniCssExtractPlugin.loader替换，实现外部引入样式
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        //启动css模块化
+                        options: {
+                            modules: {
+                                localIdentName: '[local]',
                             } 
                         }
                     },
@@ -62,5 +82,6 @@ module.exports = merge(base, {
         new ReactLoadableSSRAddon({
             filename: 'load-manifest.json',
         }),
+        // new ReactRefreshWebpackPlugin(), 
     ],
 });

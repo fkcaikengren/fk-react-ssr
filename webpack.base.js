@@ -9,7 +9,7 @@ module.exports = {
     module:{
         rules:[
             {
-                test:/\.js$/,
+                test:/\.js[x]?$/,
                 loader:'babel-loader',
                 exclude:/node_modules/,
                 options:{
@@ -18,9 +18,12 @@ module.exports = {
                         "@babel/preset-react"
                     ],
                     plugins:[
+                        "@babel/plugin-transform-runtime",
                         "@babel/plugin-proposal-class-properties",
                         //加上这个，使用Loadable就不用手写modules: [name]，而是使用'./dir/filename'命名
                         // "react-loadable/babel" 
+
+                        // 'react-refresh/babel'
                     ]
                 }
             }
@@ -32,6 +35,7 @@ module.exports = {
         //目录别名
         alias: {
           '@': path.resolve(__dirname, "./src"),
+          '~': path.resolve(__dirname, "./")
         },
         //import导入时可省略后缀
         extensions: [ ".js", "jsx", ".ts", ".tsx", ".json"],

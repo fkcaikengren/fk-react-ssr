@@ -7,7 +7,6 @@ function App(props) {
     
     return (
         <Fragment>
-            <Header></Header>
             {renderRoutes(props.route.routes)}
         </Fragment>
     )

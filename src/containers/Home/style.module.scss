@@ -1,0 +1,47 @@
+@import '../../sass/variant.scss';
+@import '../../sass/mixin.scss';
+
+.home{
+    flex:1;
+    h2{
+        color: $color-main;
+    }
+    .section{
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 0 16px;
+        @include grey-border;
+        margin-bottom: 20px;
+        img{
+            max-width: 100%;
+        }
+        .param{
+            position: relative;
+            border-top: 1px solid #ddd;
+            padding: 30px 0 40px;
+            &:first-child{
+                border-top: none;
+            }
+            .greytag{
+                margin-right: 20px;
+                color: #ccc;
+            }
+            .inner_html{
+                margin-top: 10px;
+                color: #888;
+            }
+            .see_more{
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+                color: $color-main;
+                &::after{
+                    content: '>>';
+                }
+            }
+        }
+
+        
+    }
+
+}

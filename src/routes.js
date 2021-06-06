@@ -7,31 +7,50 @@ import Loadable from 'react-loadable'
     插件来完成映射：moduleName->资源路径+名称等。这个映射信息可以保存在一个指定的json文件中
     必要时，可以通过getBundles来利用moduleName查找资源
 
+    loading:()=>null, 返回null可以避免client端和server端渲染不一致
+    webpack属性：导致不能code splitting
+
 */
 
 const Login = Loadable({
-    loader:() => import(/*webpackChunkName:'login'*/"./containers/Login"),
-    loading:()=><div>loading...</div>,
+    loader:() => import(/*webpackChunkName:'login'*/"./containers/Login").then(c=>{
+        Login.loadData = c.default.loadData
+        return c
+    }),
+    loading:()=>null,
     modules: ['login'],
+    // webpack: ()=>[require.resolve('./containers/Login')]
 })
 
 
 const App = Loadable({
-    loader:() => import(/*webpackChunkName:'webapp'*/"./containers/App"),
-    loading:()=><div>loading...</div>,
-    modules: ['webapp']
+    loader:() => import(/*webpackChunkName:'webapp'*/"./containers/App").then(c=>{
+        App.loadData = c.default.loadData
+        return c
+    }),
+    loading:()=>null,
+    modules: ['webapp'],
+    // webpack: ()=>[require.resolve('./containers/App')]
 })
 
 const Home = Loadable({
-    loader:() => import(/*webpackChunkName:'home'*/"./containers/Home"),
-    loading:()=><div>loading...</div>,
-    modules: ['home']
+    loader:() => import(/*webpackChunkName:'home'*/"./containers/Home").then(c=>{
+        Home.loadData = c.default.loadData
+        return c
+    }),
+    loading:()=>null,
+    modules: ['home'],
+    // webpack: ()=>[require.resolve('./containers/Home')]
 })
 
 const Introduce = Loadable({
-    loader:() => import(/*webpackChunkName:'introduce'*/"./containers/Introduce"),
-    loading:()=><div>loading...</div>,
-    modules: ['introduce']
+    loader:() => import(/*webpackChunkName:'introduce'*/"./containers/Introduce").then(c=>{
+        Introduce.loadData = c.default.loadData
+        return c
+    }),
+    loading:()=>null,
+    modules: ['introduce'],
+    // webpack: ()=>[require.resolve('./containers/Introduce')]
 })
 
 
@@ -47,7 +66,6 @@ export default [
         path:'/',
         key:'app',
         component:App,
-        loadData:Home.loadData,
         // 子路由
         routes:[
             {
@@ -55,13 +73,11 @@ export default [
                 key:'home',
                 exact:true,
                 component:Home,
-                loadData:Home.loadData,
             },
             {
                 path:'/introduce',
                 key:'introduce',
                 component:Introduce,
-                loadData:Introduce.loadData
             },
         ]
     }

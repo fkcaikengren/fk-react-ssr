@@ -20,7 +20,7 @@ module.exports = merge(base, {
     module: { //服务端并不会生成css
         rules: [
             {
-                test: /\.[s]?css$/,
+                test: /\.module\.[s]?css$/,
                 use: [
                     {
                         loader: 'css-loader',
@@ -28,7 +28,7 @@ module.exports = merge(base, {
                         options: {
                             modules: {
                                 localIdentName: '[local]__[hash:base64:5]',
-                                exportOnlyLocals: true   //import得到的style只导出locals对象
+                                exportOnlyLocals: true,   //import得到的style只导出locals对象
                             } 
                         }
                     },
@@ -36,6 +36,25 @@ module.exports = merge(base, {
                     {loader:'sass-loader'}
                 ]
             },
+            {
+                test: /\.[s]?css$/,
+                exclude: /module/, //符合test同时排除文件名包含'module'的
+                use: [
+                    {
+                        loader: 'css-loader',
+                        //启动css模块化
+                        options: {
+                            modules: {
+                                localIdentName: '[local]',
+                                exportOnlyLocals: true,   //import得到的style只导出locals对象
+                            } 
+                        }
+                    },
+                    {loader:'postcss-loader'},
+                    {loader:'sass-loader'}
+                ]
+            },
+
             {
                 test: /\.(jp[e]?g|png|gif|woff|woff2|ttf|eot|svg|ico)/,
                 use: [

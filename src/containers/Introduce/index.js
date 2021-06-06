@@ -1,36 +1,42 @@
-import React from 'react'
-const  str =   `
-<StaticRouter location='/login'>
-  {renderRoutes(routes)}
-</StaticRouter>
-`
+import React,{useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import WrapPage from '../../components/WrapPage'
+import { load } from '../../store/modules/introduce'
+import styles from './style.module.scss'
+
 function Introduce() {
+    let {data} = useSelector(state=>state.introduce)
+    const dispatch = useDispatch()
+    useEffect(()=>{ //仅在lient端执行
+        dispatch(load())
+    },[])
+
+   
+    const list = data?data.list:[{
+        id: 77,
+image: "https://newimg.jspang.com/BBD64.jpg",
+order_id: 0,
+title: "2021前端开发学习路径 一张图让你轻松自学",
+type_id: 1,
+url: "https://www.jspang.com/detailed?id=72",
+    }]
     return (
-        <div className='fluid-container'>
-            <div className='block'>
-                <h2>StaticRouter</h2>
-                <p>
-                无状态（stateless）的路由，也就是不会运行js代码，不同于BrowserRouter可以检测地址栏的变化并渲染对应的组件。
-                    1.控制StaticRouter显示哪个组件，需要传入location参数来控制
-                </p>
-                <code className='code'>
-                    {str}
-                </code>
-                <p>关键</p>
-            </div>
-            <div className='block'>
-                <h2>StaticRouter</h2>
-                <p>
-                无状态（stateless）的路由，也就是不会运行js代码，不同于BrowserRouter可以检测地址栏的变化并渲染对应的组件。
-                    1.控制StaticRouter显示哪个组件，需要传入location参数来控制
-                </p>
-                <code className='code'>
-                    {str}
-                </code>
-                <p>关键</p>
-            </div>
+        <div className={styles.introduce} >
+            {list.length &&
+                list.map((item)=>(
+                    <a className={styles.item} key={item.id} href={item.url}>
+                        <div className={styles.cover_wrapper}>
+                            <img className={styles.cover} src={item.image} alt="cover" />
+                        </div> 
+                        <p className={styles.title}>{item.title}</p>
+                    </a>
+                ))
+            }
         </div>
     )
 }
 
-export default Introduce
+const loadData = (store)=>{
+    return store.dispatch(load())
+}
+export default WrapPage({title:'introduce',loadData})(Introduce)

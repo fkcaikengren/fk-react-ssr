@@ -9,26 +9,22 @@ import { renderRoutes } from 'react-router-config'
 import { preloadReady, preloadAll } from 'react-loadable';
 import routes from '../routes'
 import '../sass/base.scss' //client.js里引入的css会被打包为main.css
-
+import { Provider } from 'react-redux';
+import getClientStore from '../store/clientStore'
 
 // hydrate的作用：不同于render方法，它是完成事件绑定
-// ReactDOM.hydrate(
-//     <Router>
-//         {renderRoutes(routes)}
-//     </Router>
-// ,document.querySelector('#root'))
-
-
 /*
-    使用React-loadable或类似
+    使用React-loadable或类似code splitting库，需要加载component后再hydrate, 否则会导致服务端和客户端渲染不一致
+    preloadReady:
+    preloadAll: 全部加载完成，会一次性下载所有分包（没有了code splitting的意义）
 */
 
 window.main = ()=>{
-    preloadAll().then(_=>{  
+    preloadReady().then(_=>{  
         ReactDOM.hydrate(
-            <Router>
-                {renderRoutes(routes)}
-            </Router>
+            <Provider store={getClientStore()}>
+                <Router>{renderRoutes(routes)}</Router>
+            </Provider>
           ,document.querySelector('#root'))
     }) 
 }
