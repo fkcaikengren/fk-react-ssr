@@ -1,0 +1,31 @@
+
+
+.item{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    .deleteBtn{
+        background: red;
+        color: #fff;
+        width: 50px;
+        height: 30px;
+        margin-right: 50px;
+        border: none;
+    }
+}
+
+.doBtn{
+    margin-top: 40px;
+    margin-left: 40px;
+    background: black;
+    color: #fff;
+    width: 100px;
+    height: 30px;
+    margin-right: 50px;
+    border: none;
+    border-radius: 20px;
+}
+
+.disable{
+    background: #aaa;
+}
