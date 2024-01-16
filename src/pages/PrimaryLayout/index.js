@@ -15,13 +15,16 @@ import TuseMemo from '../TuseMemo'
 import TuseReducer from '../TuseReducer'
 import TuseRef from '../TuseRef'
 
+
+import React18 from '../React18'
+import TuseTransition from '../React18/TuseTransition'
+
 import DemoUndo from '../DemoUndo'
 
 import styles from './pmy-layout.module.scss'
-import DemoSearchkit from '../DemoSearchkit'
 import DemoMiddleware from '../DemoMiddleware/components'
 import DemoReactRedux from '../DemoReactRedux/components'
-import LReactHookForm from '../LReactHookForm'
+
 
 const PrimaryLayout = ()=>{
     return <div className='container'>
@@ -42,15 +45,16 @@ const PrimaryLayout = ()=>{
             <Route  path='/custom-hook/fetch' component={FetchExample}></Route>
             <Route  path='/custom-hook/table' component={TableExample}></Route>
 
+            <Route exact path='/react18' component={React18}></Route>
+            <Route path='/react18/use-transition' component={TuseTransition}></Route>
+
             {/* Demo */}
             <Route path='/demo-undo' component={DemoUndo} />
             <Route path='/demo-react-redux' component={DemoReactRedux}/>
             <Route path='/demo-middleware' component={DemoMiddleware}/>
-            <Route path='/demo-searchkit' component={DemoSearchkit} />
 
-            {/* 第三方库 */}
-            <Route path='/react-hooks-form' component={LReactHookForm} />
-
+        
+            
 
         </Switch>
     </div>

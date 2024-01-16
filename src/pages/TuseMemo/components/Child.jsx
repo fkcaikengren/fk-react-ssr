@@ -1,25 +1,21 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
-function Child(props) {
-    const {list, setList, deleteLanguage} = props
-    console.log('child - list.length:'+list.length)
+function Child({a,b}) {
+    
+    // 计算属性，当依赖不变直接返回缓存值
+    const c = useMemo(()=>{
+        console.log('执行useMemo 回调')
+        return b*100*12
+    }, [b])
+
+    console.log({a,b})
+
     return (
         <div>
-            {
-                list.map((item,i)=>(
-                    <li key={i}>
-                        {item.content} &nbsp; <button onClick={_=>{
-                            deleteLanguage(item.id)
-                        }}>delete</button>
-                    </li>
-                ))
-            }
+            <p>{a}</p>
+            <p>计算b得到：{c}</p>
         </div>
     )
 }
-/*
-React.memo(component , ?(preProps,nextProps)=>bool) 构建纯组件，
-相当于shouldComponentUpdate
-本质是：会对前后的props进行一次浅比较，从而判断是否render
-*/
-export default React.memo(Child)
+
+export default Child

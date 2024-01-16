@@ -1,19 +1,28 @@
 
 import Toggle from './components/Toggle'
-import styles from './render-props.module.scss'
 
-
+// 回调函数实现插槽
 function TRenderProps() {
     return (
-        <div className={styles.container}>
-            <Toggle render={state=>(
+        <div >
+            <Toggle render={show=>(
                 <div>
-                    <h2>toggle1</h2>
+                    {show &&
+                        <h2>我是第一个</h2>
+                    }
+                    {!show &&
+                        <div>loading ..</div>
+                    }
                 </div>
             )}/>
-            <Toggle render={state=>(
+            <Toggle render={show=>(
                 <div>
-                    <h2>toggle2</h2>
+                    {show &&
+                        <h2>I'm second</h2>
+                    }
+                    {!show &&
+                        <div>loading ..</div>
+                    }
                 </div>
             )}/>
         </div>

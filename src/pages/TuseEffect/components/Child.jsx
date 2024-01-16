@@ -1,9 +1,10 @@
 import React,{useEffect} from 'react'
 
-function Example1() {
+function Child() {
     useEffect(() => {
       console.log('Child useEffect ...')
-    })
+    }, [])
+    console.log('child render --')
     return (
         <div>
             Child
@@ -11,4 +12,4 @@ function Example1() {
     )
 }
 
-export default Example1
+export default Child

@@ -12,12 +12,12 @@ function Post() {
             <br />
             <h1>请评论</h1>
             <form method='post' >
-                <label for="name">姓名</label>
+                <label htmlFor="name">姓名</label>
                 <input type="text" name="name" id='name' value={name}
                     onChange={e=>setName(e.target.value)}
                 />
                 <br />
-                <label for="comment">评论</label>
+                <label htmlFor="comment">评论</label>
                 <input type="text" name="comment" id='comment' value={comment}
                     onChange={e=>setComment(e.target.value)}
                 />
